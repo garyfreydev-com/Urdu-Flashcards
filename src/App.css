@@ -1,0 +1,192 @@
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  gap: 24px;
+  background: #f8f5ff;
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3d1a78;
+  letter-spacing: -0.5px;
+}
+
+.counter {
+  font-size: 0.95rem;
+  color: #7c6fa0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Card flip --- */
+
+.card-scene {
+  width: min(440px, 92vw);
+  height: min(320px, 75vw);
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card-scene:focus-visible .card {
+  box-shadow: 0 0 0 3px #a855f7, 0 8px 32px rgba(100, 50, 180, 0.15);
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 20px;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 32px rgba(100, 50, 180, 0.12);
+}
+
+.front {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  padding-bottom: 2.5rem;
+}
+
+.back {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  transform: rotateY(180deg);
+}
+
+.urdu-letter {
+  font-size: clamp(72px, 16vw, 112px);
+  line-height: 1;
+  color: #fff;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  direction: rtl;
+  user-select: none;
+}
+
+.sound-name {
+  font-size: clamp(28px, 7vw, 48px);
+  font-weight: 700;
+  color: #e9d5ff;
+  letter-spacing: -0.5px;
+  user-select: none;
+}
+
+.sound-example {
+  font-size: clamp(13px, 3.5vw, 17px);
+  color: #c4b5fd;
+  font-style: italic;
+  user-select: none;
+}
+
+/* --- Controls --- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #d8b4fe;
+  background: #fff;
+  color: #7c3aed;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.1s;
+  touch-action: manipulation;
+}
+
+.nav-btn:hover {
+  background: #f3e8ff;
+}
+
+.nav-btn:active {
+  transform: scale(0.92);
+}
+
+.shuffle-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid #d8b4fe;
+  background: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  touch-action: manipulation;
+  opacity: 0.55;
+}
+
+.shuffle-btn.active {
+  opacity: 1;
+  background: #f3e8ff;
+  border-color: #7c3aed;
+}
+
+.shuffle-btn:hover {
+  opacity: 1;
+}
+
+.shuffle-btn:active {
+  transform: scale(0.92);
+}
+
+@media (prefers-color-scheme: dark) {
+  .app {
+    background: #0f0a1e;
+  }
+  .title {
+    color: #c4b5fd;
+  }
+  .counter {
+    color: #9d84c4;
+  }
+  .nav-btn,
+  .shuffle-btn {
+    background: #1e1b33;
+    border-color: #4c3a7a;
+    color: #c4b5fd;
+  }
+  .nav-btn:hover,
+  .shuffle-btn:hover {
+    background: #2a2045;
+  }
+  .shuffle-btn.active {
+    background: #2a2045;
+    border-color: #a855f7;
+  }
+}
